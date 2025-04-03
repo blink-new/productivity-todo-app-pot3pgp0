@@ -1,16 +1,15 @@
 
 export interface Task {
-  id: string
-  title: string
-  completed: boolean
-  notes?: string
-  timeSpent?: number
-  createdAt: number
-  subtasks: Subtask[]
+  id: string;
+  title: string;
+  notes: string;
+  completed: boolean;
+  priority: 'low' | 'medium' | 'high';
+  createdAt: number;
 }
 
-export interface Subtask {
-  id: string
-  title: string
-  completed: boolean
+export interface TimerState {
+  duration: number;
+  timeLeft: number;
+  isRunning: boolean;
 }

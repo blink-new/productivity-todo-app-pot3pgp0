@@ -37,14 +37,9 @@ export default function App() {
   }
 
   return (
-    <main className="min-h-screen bg-background p-4 md:p-8">
-      <div className="mx-auto max-w-2xl space-y-8">
-        <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">Focus Todo</h1>
-          <p className="text-muted-foreground">
-            Stay focused and get things done.
-          </p>
-        </div>
+    <div className="min-h-screen bg-background p-8">
+      <div className="mx-auto max-w-2xl">
+        <h1 className="mb-8 text-4xl font-bold">Focus Todo</h1>
         
         {focusedTask ? (
           <FocusMode
@@ -62,6 +57,6 @@ export default function App() {
           />
         )}
       </div>
-    </main>
+    </div>
   )
 }
