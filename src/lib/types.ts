@@ -6,4 +6,11 @@ export interface Task {
   notes?: string
   timeSpent?: number
   createdAt: number
+  subtasks: Subtask[]
+}
+
+export interface Subtask {
+  id: string
+  title: string
+  completed: boolean
 }
