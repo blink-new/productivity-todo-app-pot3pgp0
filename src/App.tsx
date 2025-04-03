@@ -22,6 +22,8 @@ export default function App() {
       completed: false,
       subtasks: [],
       notes: "",
+      createdAt: Date.now(),
+      timeSpent: 0
     }
     setTasks([...tasks, newTask])
   }
