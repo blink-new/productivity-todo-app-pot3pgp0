@@ -4,7 +4,7 @@ import { Task, Subtask } from '../lib/types'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Checkbox } from './ui/checkbox'
-import { Timer, Focus, Trash2, ChevronDown, ChevronRight, Plus } from 'lucide-react'
+import { Timer, Focus, Trash2, ChevronDown, ChevronRight } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 interface TaskListProps {
@@ -36,6 +36,7 @@ export function TaskList({
       completed: false,
       createdAt: Date.now(),
       subtasks: [],
+      notes: '',
     }
 
     onTaskAdd(newTask)
@@ -70,7 +71,7 @@ export function TaskList({
 
     onTaskUpdate({
       ...task,
-      subtasks: [...task.subtasks, newSubtask]
+      subtasks: [...(task.subtasks || []), newSubtask]
     })
 
     setNewSubtasks(prev => ({
@@ -81,7 +82,7 @@ export function TaskList({
   }
 
   const updateSubtask = (task: Task, subtaskId: string, completed: boolean) => {
-    const updatedSubtasks = task.subtasks.map(st =>
+    const updatedSubtasks = (task.subtasks || []).map(st =>
       st.id === subtaskId ? { ...st, completed } : st
     )
     
@@ -131,7 +132,7 @@ export function TaskList({
                   const newTask = {
                     ...task,
                     completed: checked as boolean,
-                    subtasks: task.subtasks.map(st => ({
+                    subtasks: (task.subtasks || []).map(st => ({
                       ...st,
                       completed: checked as boolean
                     }))
@@ -145,9 +146,9 @@ export function TaskList({
                 }`}
               >
                 {task.title}
-                {task.subtasks.length > 0 && (
+                {(task.subtasks?.length || 0) > 0 && (
                   <span className="ml-2 text-sm text-muted-foreground">
-                    ({task.subtasks.filter(st => st.completed).length}/{task.subtasks.length})
+                    ({(task.subtasks || []).filter(st => st.completed).length}/{task.subtasks?.length})
                   </span>
                 )}
               </span>
@@ -181,7 +182,7 @@ export function TaskList({
             {expandedTasks[task.id] && (
               <div className="space-y-2 border-t bg-accent/50 p-4">
                 <div className="pl-8 space-y-2">
-                  {task.subtasks.map((subtask) => (
+                  {(task.subtasks || []).map((subtask) => (
                     <div
                       key={subtask.id}
                       className="flex items-center gap-2 rounded-lg border bg-background p-3 transition-colors hover:bg-accent"
