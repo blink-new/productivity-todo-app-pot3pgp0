@@ -7,7 +7,7 @@ import { ViewSwitcher, ViewType } from "./components/ViewSwitcher"
 import { Button } from "./components/ui/button"
 import { Plus } from "lucide-react"
 import { FocusMode } from "./components/FocusMode"
-import { useLocalStorage } from "./lib/hooks/useLocalStorage"
+import { useLocalStorage } from "./hooks/useLocalStorage"
 import { generateId } from "./lib/utils"
 
 export default function App() {
