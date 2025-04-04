@@ -1,9 +1,8 @@
 
-import { LayoutGrid, List } from "lucide-react"
 import { Button } from "./ui/button"
-import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group"
+import { LayoutGrid, List } from "lucide-react"
 
-export type ViewType = 'board' | 'list'
+export type ViewType = "board" | "list"
 
 interface ViewSwitcherProps {
   view: ViewType
@@ -12,13 +11,25 @@ interface ViewSwitcherProps {
 
 export function ViewSwitcher({ view, onChange }: ViewSwitcherProps) {
   return (
-    <ToggleGroup type="single" value={view} onValueChange={(value) => onChange(value as ViewType)}>
-      <ToggleGroupItem value="board" aria-label="Board view">
+    <div className="bg-muted p-1 rounded-lg flex gap-1">
+      <Button
+        variant={view === "board" ? "default" : "ghost"}
+        size="sm"
+        onClick={() => onChange("board")}
+        className="gap-2"
+      >
         <LayoutGrid className="h-4 w-4" />
-      </ToggleGroupItem>
-      <ToggleGroupItem value="list" aria-label="List view">
+        Board
+      </Button>
+      <Button
+        variant={view === "list" ? "default" : "ghost"}
+        size="sm"
+        onClick={() => onChange("list")}
+        className="gap-2"
+      >
         <List className="h-4 w-4" />
-      </ToggleGroupItem>
-    </ToggleGroup>
+        List
+      </Button>
+    </div>
   )
 }
